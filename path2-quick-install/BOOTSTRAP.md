@@ -13,6 +13,8 @@
 - `path2-quick-install/claude-home/` —— 待复制到 `~/.claude/` 的整包
   - `CLAUDE.md` / `settings.json` / `agents/` / `commands/` / `hooks/` / `skills/`
   - CLAUDE.md 里的身份段已被替换成 `{{你的名字}}` 占位符，装完你会提醒我替换
+- `library/` —— 待复制到 `~/.claude/library/` 的开源工具库（Git submodules）
+  - `agent-toolkit/` / `anthropic-skills/` / `everything-claude-code/`
 
 ## 我希望你遵守的纪律
 

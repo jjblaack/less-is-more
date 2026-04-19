@@ -58,5 +58,5 @@
 
 ## 外部工具库（Library）
 
-`~/.claude/library/` 是一个开源 Claude Code 工具集合（skills / agents / hooks / commands），包含三个子库：`agent-toolkit`、`Anthropic的skills`、`everything-claude-code`。
+`~/.claude/library/` 是一个开源 Claude Code 工具集合（skills / agents / hooks / commands），包含三个子库：`agent-toolkit`、`anthropic-skills`、`everything-claude-code`。
 **使用方式：当你说"去 library 里找"或需要某个能力时，我会去 `~/.claude/library/` 里搜索匹配的 agent、skill、hook 或 command。找到后，按需拷贝到项目级别使用。

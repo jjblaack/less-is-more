@@ -47,6 +47,18 @@
 - **Claude Code CLI** 已安装并能正常使用
 - `~/.claude/` 目录存在（Claude Code 首次运行会自动建）
 
+## Git Submodules
+
+本仓库的 `library/` 目录使用 Git submodules 管理。clone 后需要额外拉取：
+
+```bash
+# 如果你还没有 clone 过，用 --recursive 一次性拉全
+git clone --recursive <仓库地址>
+
+# 如果已经 clone 了但 library 目录为空
+git submodule update --init --recursive
+```
+
 ## 核心能力概览（两条路径产出一致）
 
 | 能力 | 实现形式 |
@@ -79,14 +91,15 @@ harness-distribution/
    └─ claude-home/                        ← 待拷到 ~/.claude/ 的整包
       ├─ CLAUDE.md                        ← 身份段已替换为 {{占位符}}，含 Library 索引段
       ├─ settings.json
-      ├─ library/                         ← 开源工具库（三个子库，安装时拷到 ~/.claude/library/）
-      │  ├─ agent-toolkit/
-      │  ├─ Anthropic的skills/
-      │  └─ everything-claude-code/
       ├─ agents/        (planner / evaluator / code-reviewer / security-reviewer)
       ├─ commands/      (/plan /code /evaluate /harness-retro /harness-audit)
       ├─ hooks/         (secret-scan / dangerous-command / gotchas-prompt)
       └─ skills/        (skill-creator / doc-templates / eval-rubric / gotchas)
+
+├─ library/                               ← 开源工具库（Git submodules，安装时拷到 ~/.claude/library/）
+│  ├─ agent-toolkit/
+│  ├─ anthropic-skills/
+│  └─ everything-claude-code/
 ```
 
 ## 共同纪律（两条路径都生效）
@@ -115,7 +128,7 @@ harness-distribution/
 ```
 ~/.claude/library/
 ├─ agent-toolkit/
-├─ Anthropic的skills/
+├─ anthropic-skills/
 ├─ everything-claude-code/
 └─ 某个新包/          ← 直接放这里
 ```

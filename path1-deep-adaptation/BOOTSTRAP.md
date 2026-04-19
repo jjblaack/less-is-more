@@ -13,6 +13,8 @@
 - `path1-deep-adaptation/harness-manual-原稿.md` —— harness 工程方法论的知识源（信息量大但杂，背景读物，别全搬进 CLAUDE.md）
 - `path1-deep-adaptation/builder-guide.md` —— 精简版搭建指南（你主要照这个做）
 - `path1-deep-adaptation/agent-steps.md` —— **你的执行步骤参考，里面列了所有你必须问我确认的检查点，不得跳过**
+- `library/` —— 待复制到 `~/.claude/library/` 的开源工具库（Git submodules）
+  - `agent-toolkit/` / `anthropic-skills/` / `everything-claude-code/`
 
 ## 我希望你遵守的纪律
 

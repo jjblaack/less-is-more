@@ -95,7 +95,7 @@
     - 用户确认后写入
 
 14. **Library 工具库**
-    - 将 `harness-distribution/path1-deep-adaptation/library/` 下的所有子目录拷贝到 `~/.claude/library/`
+    - 将 `harness-distribution/library/` 下的所有子目录拷贝到 `~/.claude/library/`
     - 告诉用户 `~/.claude/library/` 是一个可随时扩展的开源工具库
     - 在 `CLAUDE.md` 中追加"外部工具库（Library）"段（参考 path2 的 CLAUDE.md 写法）
 

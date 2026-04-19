@@ -1,0 +1,9 @@
+[submodule "library/anthropic-skills"]
+	path = library/anthropic-skills
+	url = https://github.com/anthropics/skills.git
+[submodule "library/agent-toolkit"]
+	path = library/agent-toolkit
+	url = https://github.com/softaworks/agent-toolkit.git
+[submodule "library/everything-claude-code"]
+	path = library/everything-claude-code
+	url = https://github.com/affaan-m/everything-claude-code.git

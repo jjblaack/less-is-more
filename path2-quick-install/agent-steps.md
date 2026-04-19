@@ -64,6 +64,11 @@
    ```
    告诉用户命令 + 备份路径，等确认。
 
+7.5. 🛑 **Library 工具库拷贝**：
+   - 将分发包根目录 `library/` 下的所有子目录拷贝到 `~/.claude/library/`
+   - 这些子目录是 Git submodules，包含：`agent-toolkit`、`anthropic-skills`、`everything-claude-code`
+   - 在 `CLAUDE.md` 中确保存在"外部工具库（Library）"段（分发包自带，通常不需要额外添加）
+
 ## 阶段 3 · 拷贝执行
 
 8. 按阶段 1 选的策略执行：
