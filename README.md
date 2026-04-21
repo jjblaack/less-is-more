@@ -1,101 +1,107 @@
 # less-is-more
 
-> **Your judgment is the steering wheel. AI is the engine.**
+> **少即是多，你的判断力是方向盘，AI 是小跑车。**
 
-A personal AI development harness for **Claude Code** — two installation paths, one philosophy: **the minimum number of constraints that still keep you in control**.
+这是一套适用于 **Claude Code** 打造的个人 AI 协同开发 harness。两条路，一个理念：**用最少的约束，达成最大的掌控力**。
 
----
-
-**Other Languages**: [中文](README-zh.md)
+目前暂时只完美适配于Mac。
 
 ---
 
-## What Is This
+**Other Languages**: [English](README-en.md)
 
-Claude Code is powerful. But without a workflow, you end up reviewing a mountain of code you didn't ask for. With *too many* rules, you spend more time managing the agent than actually shipping.
+---
 
-Most harnesses solve this by adding **more** — more rules, more phases, more guardrails. This one solves it by adding **less**.
+## 项目简介
 
-Six iron rules. Three phases for non-trivial work. Three safety hooks. That's it. Every constraint earns its place by either protecting you directly or multiplying the agent's output. Everything else is noise.
+Claude Code 很强。但如果没有工作流约束，首先是项目开发很难高质量的完成（比如一次生成就达到目标）。反过来，如果规则太多，不可避免的会导致如文档腐坏等问题，要们就是流程太多，太死板。
 
-Think of it like reins on a horse: they don't dictate the route or the pace. They just make sure you can steer when it matters.
+大多数 harness 的解法是**加更多**——更多规则、更多阶段、更多护栏。我们反其道而行：**做减法**。更准确的说，知道哪里该做加法，哪里该做减法更重要！
 
-## Why It Exists
+6 条铁律。非琐碎任务 3 个阶段。3 个安全 Hook。每条约束都必须证明自己的价值——不能直接保护你、不能直接放大 agent 产出的，就不该在这里。
 
-In the AI era, **taste is the differentiator**. Anyone can generate code. The gap is between people who understand what to keep, what to cut, and why.
+就像马鞍：它不告诉马往哪跑、跑多快，只是确保你能在需要时拉住缰绳。马跑它最擅长的，你决定去哪。
 
-This harness bakes that philosophy into `~/.claude/` so it applies to every session, every project, every agent — automatically.
+## 做这个的初衷
 
-**The core loop:**
-- **Think first** — the agent restates your ask, waits for your "yes", proposes a plan, waits again. No drive-by commits.
-- **Structure when it matters** — trivial? Go direct. Non-trivial? `/plan` → `/code` → `/evaluate`. No ceremony for simple stuff.
-- **Safety on by default** — secrets blocked, destructive commands need your explicit go-ahead.
-- **Learn from every session** — session end prompts you to capture what went wrong. Weeks later, you've built a personal knowledge base.
+AI 时代，**品味是分水岭**。谁都能生成代码。真正的差距在于理解深度：知道该保留什么、该砍掉什么，以及为什么这么做。
 
-## Quick Start
+这套 harness 把这套理念写进 `~/.claude/`，让它对每个 session、每个项目、每个 agent 自动生效。
+
+> 碎碎念：我理解的：harness从来不是某种范式，是一种思想，字面意思已经囊括全意：装上马鞍，策马崩腾。
+
+**提高代码生成质量的核心循环：**
+- **谋而后动** —— agent 先复述你的需求、等你确认、再给方案、再等一次。不会有"先干了再说"。agent和你的“认知”达成一致，你们才瞄准了同一个方向。
+- **该结构化时才结构化** —— 琐碎修改直接做。非琐碎任务走 `/plan` → `/code` → `/evaluate`。简单事不搞繁文缛节。
+- **默认安全** —— 硬编码密钥被拦截，危险命令需要你确认。
+- **越用越聪明** —— 每次 session 结束自动提醒你记录踩坑经验。不用手动执行任何命令，会自动弹出提醒。
+
+## 快速开始
 
 ```bash
-git clone --recursive <repo-url>
+git clone --recursive <仓库地址>
 cd less-is-more
+claude
 ```
+具体操作：
 
-Then pick your path:
-
-| Path | Time | TL;DR |
+| 路径 | 时间 | 一句话 |
 |---|---|---|
-| **Quick Install** | ~15 min | Paste one prompt, get a working harness. Personalize later. |
-| **Deep Adaptation** | 1-2 hrs | Write your own coding philosophy ("Soul"), let the agent build around it. |
+| **一键快装** | ~15 分钟 | 粘贴一段 prompt，装完就能用。个性化慢慢来。 |
+| **深度适配** | 1-2 小时 | 写下你自己的编码哲学（"Soul"），让 agent 围绕它构建 harness。 |
 
-**Quick Install**: Open Claude Code in this directory, paste `path2-quick-install/BOOTSTRAP.md`.
+**一键快装**：在本目录打开 Claude Code，粘贴 `path2-quick-install/BOOTSTRAP.md`。
 
-**Deep Adaptation**: Fill out `path1-deep-adaptation/soul-template.md`, then paste `path1-deep-adaptation/BOOTSTRAP.md`.
+**深度适配**：填好 `path1-deep-adaptation/soul-template.md`，然后粘贴 `path1-deep-adaptation/BOOTSTRAP.md`。
 
-Paths are interchangeable. Start quick, refine later. Or go deep from day one.
+两条路随时切换。先用起来再调，或者第一天就深度定制，看你自己。
 
-## What You Get
+也可以告诉cc：我需要安装这一套，你根据内容，引导我完成。
+
+## 核心能力
 
 | | |
 |---|---|
-| **6 Iron Rules** | `CLAUDE.md` — think-first, ask-when-unclear, less-is-more, precision-over-completeness |
-| **3-Phase Workflow** | `/plan` → `/code` → `/evaluate` with dedicated agents |
-| **Secret Scanner** | `secret-scan.sh` — blocks hardcoded keys before they hit your repo |
-| **Dangerous Command Guard** | `dangerous-command.sh` — `rm -rf`, `git push --force` etc. trigger a system dialog (defaults to "deny") |
-| **Gotcha Capture** | `gotchas-prompt.sh` — end-of-session prompt, auto-appends to your personal knowledge base |
-| **Monthly Retro & Audit** | `/harness-retro` + `/harness-audit` |
-| **4 Specialist Agents** | `planner` · `evaluator` · `code-reviewer` · `security-reviewer` |
-| **4 Core Skills** | `skill-creator` · `doc-templates` · `eval-rubric` · `gotchas` |
-| **Tool Library** | 3 curated submodules — `agent-toolkit` · `anthropic-skills` · `everything-claude-code` |
+| **6 条协作铁律** | `CLAUDE.md` —— 谋而后动、缺信息就问、少即是多、精确优于完整 |
+| **三段式工作流** | `/plan` → `/code` → `/evaluate`，每阶段有专属 agent |
+| **密钥扫描** | `secret-scan.sh` —— 硬编码密钥进不了你的代码库 |
+| **危险命令拦截** | `dangerous-command.sh` —— `rm -rf`、`git push --force` 等触发系统弹窗，默认"拒绝" |
+| **踩坑记录** | `gotchas-prompt.sh` —— session 结束自动提醒，经验追加到个人知识库 |
+| **月度复盘/审计** | `/harness-retro` + `/harness-audit` |
+| **4 个专项 agent** | `planner` · `evaluator` · `code-reviewer` · `security-reviewer` |
+| **4 个核心 skill** | `skill-creator` · `doc-templates` · `eval-rubric` · `gotchas` |
+| **工具库** | 3 个精选 submodule —— `agent-toolkit` · `anthropic-skills` · `everything-claude-code` |
 
-## How to Choose
+## 选哪条路
 
 ```
-Written down your own coding philosophy / workflow rules?
+写过自己的编码哲学 / 个人工作流规则？
   │
-  ├─ No  →  Quick Install
-  │          Get it running. Tweak as you go.
+  ├─ 没有  →  一键快装
+  │           先跑起来，边用边调。
   │
-  └─ Yes →  Deep Adaptation
-             The agent reads your "Soul" and builds a custom harness.
+  └─ 有    →  深度适配
+              agent 读你的 "Soul"，围绕它构建定制 harness。
 ```
 
-Unsure? Start Quick Install. Deep Adaptation is always one conversation away.
+拿不准？先一键快装。深度适配永远是一次对话的距离。
 
-## Project Structure
+## 项目结构
 
 ```
 less-is-more/
 ├─ path1-deep-adaptation/
-│  ├─ BOOTSTRAP.md          ← paste this into Claude Code
-│  ├─ soul-template.md       ← fill this out with your own philosophy
-│  ├─ soul-example-yijiang.md← author's reference example
+│  ├─ BOOTSTRAP.md          ← 粘给 Claude Code 的入口 prompt
+│  ├─ soul-template.md       ← 填写你自己的编码哲学
+│  ├─ soul-example-yijiang.md← 原作者参考范例
 │  ├─ builder-guide.md
 │  └─ agent-steps.md
 │
 ├─ path2-quick-install/
-│  ├─ BOOTSTRAP.md           ← paste this into Claude Code
-│  ├─ INSTALL.md             ← human-readable instructions
+│  ├─ BOOTSTRAP.md           ← 粘给 Claude Code 的入口 prompt
+│  ├─ INSTALL.md             ← 给人看的安装说明
 │  ├─ agent-steps.md
-│  └─ claude-home/           ← gets copied to ~/.claude/
+│  └─ claude-home/           ← 拷到 ~/.claude/ 的整包
 │     ├─ CLAUDE.md
 │     ├─ settings.json
 │     ├─ agents/
@@ -103,63 +109,63 @@ less-is-more/
 │     ├─ hooks/
 │     └─ skills/
 │
-└─ library/                  ← open-source tools (Git submodules)
+└─ library/                  ← 开源工具（Git submodules）
    ├─ agent-toolkit/
    ├─ anthropic-skills/
    └─ everything-claude-code/
 ```
 
-## Safety by Design
+## 安全设计
 
-The agent **asks before it acts**. Always.
+agent **动手前必问**。没有例外。
 
-- Lists exactly what it'll touch before touching anything
-- Full `~/.claude/` snapshot before any changes
-- Deletions/overwrites require explicit authorization
-- `settings.json` is always incrementally merged, never replaced
+- 改什么、改哪里，先列清楚
+- 任何改动前先把 `~/.claude/` 打包备份
+- 删除/覆盖必须明确授权
+- `settings.json` 永远增量合并，不整份替换
 
-If the agent starts acting without asking: interrupt it. Say "stop, explain."
+如果 agent 没问就开始：打断它，说"停，先解释"。
 
-## Extending the Library
+## 扩展工具库
 
-After install, `~/.claude/library/` is yours to grow. Need a capability the harness doesn't have? Tell Claude "go look in library." It'll search for matching agents, skills, hooks, or commands and copy what's needed.
+装完后 `~/.claude/library/` 就是你的了，随时可以加新包。harness 没有的能力？跟 Claude 说"去 library 里找"，它会在里面搜索匹配的 agent、skill、hook 或 command，按需拷到项目级别。
 
-Drop any open-source Claude Code tool pack (or your own) directly into `~/.claude/library/`.
+任何开源的 Claude Code 工具包（或你自己写的），直接丢到 `~/.claude/library/` 就行。
 
 ```
 ~/.claude/library/
 ├─ agent-toolkit/
 ├─ anthropic-skills/
 ├─ everything-claude-code/
-└─ some-new-package/    ← just drop it here
+└─ 某个新包/          ← 直接放这里
 ```
 
-> **TODO**: Will become a `/add-to-library` command for easier management.
+> **TODO**：未来做成 `/add-to-library` 命令，管理更方便。
 
-## Prerequisites
+## 前置要求
 
-- **macOS** (hooks use `osascript` dialogs; Linux/Windows → swap to `zenity` / PowerShell)
-- **Claude Code CLI** installed
-- `~/.claude/` exists (created on first run)
+- **macOS**（hook 用 `osascript` 弹窗；Linux/Windows → 换成 `zenity` / PowerShell dialog）
+- **Claude Code CLI** 已安装
+- `~/.claude/` 目录存在（首次运行自动创建）
 
-## Troubleshooting
+## 常见问题
 
 | | |
 |---|---|
-| Hooks not firing | `chmod +x ~/.claude/hooks/*.sh` + restart Claude Code |
-| Want to undo | `tar -xzf ~/.claude/backups/pre-install-*.tar.gz -C ~` |
-| Agent stuck | Paste the error back, let it debug itself |
-| Library/ empty | `git submodule update --init --recursive` |
+| hook 不生效 | `chmod +x ~/.claude/hooks/*.sh` + 重启 Claude Code |
+| 想回退 | `tar -xzf ~/.claude/backups/pre-install-*.tar.gz -C ~` |
+| Agent 卡住 | 把报错贴回去，让它自己排查 |
+| library/ 为空 | `git submodule update --init --recursive` |
 
-## Contributing
+## 参与贡献
 
-PRs welcome. Better hook, new skill, improved agent — open an issue or drop a PR.
+欢迎 PR！更好的 hook、新的 skill、改进的 agent —— 直接开 issue 或提 PR。
 
-Big changes? Open an issue first. Let's align before you invest time.
+比较大的改动建议先开 issue 对齐方向，免得白忙活。
 
-## License
+## 许可证
 
-MIT. See [LICENSE](LICENSE) for details.
+MIT。详见 [LICENSE](LICENSE)。
 
 ---
 
