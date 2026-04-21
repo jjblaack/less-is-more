@@ -1,6 +1,8 @@
-# harness
+# less-is-more
 
 A personal AI development harness for **Claude Code**. Ship two installation paths — a one-click quick install, or a deep adaptation that binds to your own coding philosophy.
+
+Built on a single principle: **less is more**. Not a wall of rules that constrain the agent, but the minimum set of guardrails that keep it on the road — so it can run faster, not slower. You drive. AI is the copilot.
 
 ---
 
@@ -8,25 +10,35 @@ A personal AI development harness for **Claude Code**. Ship two installation pat
 
 ---
 
+## Philosophy
+
+In the AI era, **taste is the most important skill**. Anyone can generate code now — the differentiator is understanding depth, knowing what to keep, and knowing what to cut.
+
+Most harnesses go heavy: dozens of rules, mandatory patterns, rigid workflows. They treat the agent like a child that needs constant supervision. This harness goes the opposite direction — **the minimum number of constraints that still keep you in control**.
+
+Think of it like a saddle on a horse: it doesn't tell the horse where to go or how fast to run. It just makes sure you can steer when you need to. The horse does what it's best at — running. You do what you're best at — deciding the destination.
+
+This is why the harness has only **6 iron rules** (not 60), only **3 phases for non-trivial work** (not a 10-step checklist), and only **3 safety hooks** (not 10). Every constraint earns its place. If it doesn't directly protect you or directly multiply the agent's effectiveness, it doesn't belong.
+
 ## Why This Exists
 
-Claude Code is a powerful coding agent, but using it well requires **discipline** — not just better prompts. Without structure, AI-generated code accumulates fast and you lose control of what your system actually does.
+Claude Code is a powerful coding agent, but using it well requires **discipline** — not just better prompts. Without structure, AI-generated code accumulates fast and you lose control of what your system actually does. With too many rules, you suffocate the agent's productivity and spend more time managing it than coding.
 
-This harness gives you a **repeatable workflow** that lives in `~/.claude/` and applies to every session, every project, every agent. It enforces:
+This harness gives you a **lightweight, repeatable workflow** that lives in `~/.claude/` and applies to every session, every project, every agent. It enforces only what matters:
 
 - **Think before acting** — the agent must restate understanding, wait for your confirmation, then propose a plan, then wait again before touching code
-- **Structured workflow** — trivial changes go direct; non-trivial work goes through `/plan` → `/code` → `/evaluate`
+- **Structured workflow for non-trivial work** — trivial changes go direct; anything more goes through `/plan` → `/code` → `/evaluate`
 - **Safety by default** — hardcoded secrets get blocked, destructive commands require your explicit approval
 - **Learning from mistakes** — every session end prompts you to record what went wrong, building a personal knowledge base over time
 
-**The goal**: AI as a reliable partner, not an uncontrolled code generator.
+**The goal**: AI as a reliable copilot, not an uncontrolled code generator. You're always the driver.
 
 ## Quick Start
 
 ```bash
 # Clone with submodules (includes the open-source tool library)
 git clone --recursive <repo-url>
-cd harness
+cd less-is-more
 
 # Or if already cloned but library/ is empty:
 git submodule update --init --recursive
@@ -49,7 +61,7 @@ You can switch between paths at any time.
 
 | Feature | How It Works |
 |---|---|
-| **Collaboration Iron Rules** | 6 rules in global `CLAUDE.md` — think-first, ask-when-unclear, less-is-more, precision-over-completeness |
+| **6 Iron Rules** | Global `CLAUDE.md` — think-first, ask-when-unclear, less-is-more, precision-over-completeness |
 | **Three-Phase Workflow** | `/plan` → `/code` → `/evaluate` with dedicated agents for each phase |
 | **Secret Scanning** | `secret-scan.sh` hook — blocks hardcoded API keys, tokens, passwords before they land in your codebase |
 | **Dangerous Command Guard** | `dangerous-command.sh` hook — `rm -rf`, `git push --force`, etc. trigger an OS dialog defaulting to "deny" |
@@ -64,19 +76,19 @@ You can switch between paths at any time.
 ```
 Do you have a written coding philosophy / personal workflow rules?
   │
-  ├─ No  →  Path 2: One-Click Install (15 min)
+  ├─ No  →  Path 1: One-Click Install (15 min)
   │          Get working immediately, personalize later
   │
-  └─ Yes →  Path 1: Deep Adaptation (1-2 hrs)
+  └─ Yes →  Path 2: Deep Adaptation (1-2 hrs)
              The agent reads your "Soul" and builds a custom harness around it
 ```
 
-**Not sure?** Start with Path 2. You can always run Path 1 later to refine it.
+**Not sure?** Start with Path 1. You can always run Path 2 later to refine it.
 
 ## Project Structure
 
 ```
-harness/
+less-is-more/
 ├─ README.md                          ← You are here
 ├─ README-zh.md                       ← Chinese version
 ├─ LICENSE
@@ -148,7 +160,7 @@ After installation, `~/.claude/library/` is your personal open-source tool colle
 | Hooks don't trigger | `chmod +x ~/.claude/hooks/*.sh` and restart Claude Code |
 | Want to uninstall | Restore from `~/.claude/backups/pre-install-*.tar.gz` |
 | Agent gets stuck | Paste the error back to it and let it debug |
-| Library/ is empty after clone | `git submodule update --init --recursive`
+| Library/ is empty after clone | `git submodule update --init --recursive` |
 
 ## Contributing
 
@@ -159,3 +171,7 @@ For larger changes, please open an issue first so we can discuss the approach.
 ## License
 
 MIT. See [LICENSE](LICENSE) for details.
+
+---
+
+Made by [Jyan](https://github.com/Jyan)

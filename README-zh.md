@@ -1,32 +1,44 @@
-# harness
+# less-is-more
 
 一套为 **Claude Code** 打造的个人 AI 协同开发 harness。两条路径随你挑：一键快装，或深度适配你的个人编码哲学。
 
----
-
-**其他语言**: [English](README.md)
+核心理念只有一个：**少即是多**。不是用大量规则捆住 agent，而是用最克制的约束，让它跑得更快、更远。你开车，AI 是副驾驶。
 
 ---
+
+**Other Languages**: [English](README.md)
+
+---
+
+## 理念
+
+AI 时代，**品味是最重要的能力**。任何人都能生成代码了——真正的差距在于理解深度：知道该保留什么、该砍掉什么。
+
+大多数 harness 走"重"路线：几十条规则、强制模式、死板流程。把 agent 当小孩管，生怕它出错。这个项目反其道而行——**用最少的约束，达成最大的控制**。
+
+就像马鞍：它不告诉马往哪跑、跑多快，只是确保你在需要时能拉得住缰绳。马跑它最擅长的，你决定去哪。
+
+这也是为什么这个 harness 只有 **6 条铁律**（不是 60 条），非琐碎任务只有 **3 个阶段**（不是 10 步 checklist），只有 **3 个安全 hook**（不是 10 个）。每条约束都必须证明自己的存在价值——不能直接保护你、不能直接放大 agent 生产力的，就不该在这里。
 
 ## 为什么做这个
 
-Claude Code 是个强大的编程 agent，但用得好靠的是**纪律**，不是更好的 prompt。没有结构约束时，AI 生成的代码积累得快，你就失去了对系统实际在做什么的控制。
+Claude Code 是个强大的编程 agent，但用得好靠的是**纪律**，不是更好的 prompt。没有结构约束时，AI 生成的代码积累得快，你就失去了对系统实际在做什么的控制。规则太多的话，你又把 agent 的生产力扼杀了，花在管理它上的时间比写代码还多。
 
-这个 harness 提供一套**可复用的工作流**，放在 `~/.claude/` 里，对每个 session、每个项目、每个 agent 都生效。它强制：
+这个 harness 提供一套**轻量、可复用的工作流**，放在 `~/.claude/` 里，对每个 session、每个项目、每个 agent 都生效。只强制真正重要的事：
 
 - **谋而后动** —— agent 必须先复述理解、等你确认、再提方案、再等一次确认，才能碰代码
-- **结构化工作流** —— 琐碎修改直接做；非琐碎任务走 `/plan` → `/code` → `/evaluate` 三段
+- **非琐碎任务走三段式** —— 琐碎修改直接做；非琐碎任务走 `/plan` → `/code` → `/evaluate`
 - **默认安全** —— 硬编码密钥被拦截，危险命令需要你的明确授权
 - **从错误中学习** —— 每次 session 结束 prompt 你记录踩坑，随时间积累成个人知识库
 
-**目标**：让 AI 成为可靠的伙伴，而不是失控的代码生成器。
+**目标**：让 AI 成为可靠的副驾驶，而不是失控的代码生成器。你永远是驾驶员。
 
 ## 快速开始
 
 ```bash
 # 带 submodules clone（包含开源工具库）
 git clone --recursive <仓库地址>
-cd harness
+cd less-is-more
 
 # 如果已经 clone 但 library/ 为空：
 git submodule update --init --recursive
@@ -36,7 +48,7 @@ git submodule update --init --recursive
 
 | 路径 | 时间 | 说明 |
 |---|---|---|
-| **一键快装** | ~15 分钟 | 立刻能用，个性化以后慢慢补 |
+| **一键快装** | ~15 分钟 | 立刻能用，个性化以后再说 |
 | **深度适配** | 1-2 小时 | 和你的个人编码哲学（"Soul"）深度绑定 |
 
 **路径一 · 一键快装**：在分发包根目录打开 Claude Code，粘贴 `path2-quick-install/BOOTSTRAP.md` 的内容，跟着引导走。
@@ -76,9 +88,9 @@ git submodule update --init --recursive
 ## 项目结构
 
 ```
-harness/
-├─ README.md                          ← 英文版（你正在看的是中文版）
-├─ README-zh.md                       ← 中文版
+less-is-more/
+├─ README.md                          ← 英文版
+├─ README-zh.md                       ← 中文版（你正在看的）
 ├─ LICENSE
 │
 ├─ path1-deep-adaptation/             ← 深度适配路径
@@ -97,7 +109,7 @@ harness/
 │     ├─ settings.json                ← Hooks + env 配置（增量合并）
 │     ├─ agents/                      ← planner / evaluator / code-reviewer / security-reviewer
 │     ├─ commands/                    ← /plan /code /evaluate /harness-retro /harness-audit
-│     ├─ hooks/                       ← secret-scan / dangerous-command / gotchas-prompt
+│     ├─ hooks/                       ← secret-san / dangerous-command / gotchas-prompt
 │     └─ skills/                      ← skill-creator / doc-templates / eval-rubric / gotchas
 │
 └─ library/                           ← 开源工具集合（Git submodules）
@@ -159,3 +171,7 @@ harness/
 ## 许可证
 
 MIT。详见 [LICENSE](LICENSE)。
+
+---
+
+Made by [Jyan](https://github.com/Jyan)
