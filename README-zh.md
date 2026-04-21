@@ -1,8 +1,8 @@
 # less-is-more
 
-一套为 **Claude Code** 打造的个人 AI 协同开发 harness。两条路径随你挑：一键快装，或深度适配你的个人编码哲学。
+> **你的判断力是方向盘。AI 是引擎。**
 
-核心理念只有一个：**少即是多**。不是用大量规则捆住 agent，而是用最克制的约束，让它跑得更快、更远。你开车，AI 是副驾驶。
+一套为 **Claude Code** 打造的个人 AI 协同开发 harness —— 两条安装路径，一个核心理念：**用最少的约束，达成最大的掌控力**。
 
 ---
 
@@ -10,132 +10,121 @@
 
 ---
 
-## 理念
+## 这是什么
 
-AI 时代，**品味是最重要的能力**。任何人都能生成代码了——真正的差距在于理解深度：知道该保留什么、该砍掉什么。
+Claude Code 很强。但没有工作流约束，你会收到一堆不是你想要的代码。规则太多呢，你花在管理 agent 上的时间比写代码还多。
 
-大多数 harness 走"重"路线：几十条规则、强制模式、死板流程。把 agent 当小孩管，生怕它出错。这个项目反其道而行——**用最少的约束，达成最大的控制**。
+大多数 harness 的解法是**加更多**——更多规则、更多阶段、更多护栏。这个项目反其道而行：**做减法**。
+
+6 条铁律。非琐碎任务 3 个阶段。3 个安全 hook。就这样。每条约束都必须证明自己的存在价值——不能直接保护你、不能直接放大 agent 产出，就不该在这里。
 
 就像马鞍：它不告诉马往哪跑、跑多快，只是确保你在需要时能拉得住缰绳。马跑它最擅长的，你决定去哪。
 
-这也是为什么这个 harness 只有 **6 条铁律**（不是 60 条），非琐碎任务只有 **3 个阶段**（不是 10 步 checklist），只有 **3 个安全 hook**（不是 10 个）。每条约束都必须证明自己的存在价值——不能直接保护你、不能直接放大 agent 生产力的，就不该在这里。
-
 ## 为什么做这个
 
-Claude Code 是个强大的编程 agent，但用得好靠的是**纪律**，不是更好的 prompt。没有结构约束时，AI 生成的代码积累得快，你就失去了对系统实际在做什么的控制。规则太多的话，你又把 agent 的生产力扼杀了，花在管理它上的时间比写代码还多。
+AI 时代，**品味是分水岭**。谁都能生成代码。差距在于理解深度：知道该保留什么、该砍掉什么、为什么。
 
-这个 harness 提供一套**轻量、可复用的工作流**，放在 `~/.claude/` 里，对每个 session、每个项目、每个 agent 都生效。只强制真正重要的事：
+这个 harness 把这套哲学写进 `~/.claude/`，让它对每个 session、每个项目、每个 agent 自动生效。
 
-- **谋而后动** —— agent 必须先复述理解、等你确认、再提方案、再等一次确认，才能碰代码
-- **非琐碎任务走三段式** —— 琐碎修改直接做；非琐碎任务走 `/plan` → `/code` → `/evaluate`
-- **默认安全** —— 硬编码密钥被拦截，危险命令需要你的明确授权
-- **从错误中学习** —— 每次 session 结束 prompt 你记录踩坑，随时间积累成个人知识库
-
-**目标**：让 AI 成为可靠的副驾驶，而不是失控的代码生成器。你永远是驾驶员。
+**核心循环：**
+- **谋而后动** —— agent 先复述你的需求、等你确认、再给方案、再等一次。不会有"先干了再说"。
+- **该结构化时才结构化** —— 琐碎修改？直接做。非琐碎任务？走 `/plan` → `/code` → `/evaluate`。简单事不搞繁文缛节。
+- **默认安全** —— 硬编码密钥被拦截，危险命令需要你明确点头。
+- **每次都在学习** —— 每次 session 结束 prompt 你记录踩坑。几周后，你就有了一份个人知识库。
 
 ## 快速开始
 
 ```bash
-# 带 submodules clone（包含开源工具库）
 git clone --recursive <仓库地址>
 cd less-is-more
-
-# 如果已经 clone 但 library/ 为空：
-git submodule update --init --recursive
 ```
 
-然后选一条路径：
+然后选一条路：
 
-| 路径 | 时间 | 说明 |
+| 路径 | 时间 | 一句话 |
 |---|---|---|
-| **一键快装** | ~15 分钟 | 立刻能用，个性化以后再说 |
-| **深度适配** | 1-2 小时 | 和你的个人编码哲学（"Soul"）深度绑定 |
+| **一键快装** | ~15 分钟 | 粘贴一段 prompt，装完能用。个性化以后慢慢补。 |
+| **深度适配** | 1-2 小时 | 写下你自己的编码哲学（"Soul"），让 agent 围绕它构建 harness。 |
 
-**路径一 · 一键快装**：在分发包根目录打开 Claude Code，粘贴 `path2-quick-install/BOOTSTRAP.md` 的内容，跟着引导走。
+**一键快装**：在本目录打开 Claude Code，粘贴 `path2-quick-install/BOOTSTRAP.md`。
 
-**路径二 · 深度适配**：填好 `path1-deep-adaptation/soul-template.md`（你的个人编码哲学），然后粘贴 `path1-deep-adaptation/BOOTSTRAP.md` 给 Claude Code。
+**深度适配**：填好 `path1-deep-adaptation/soul-template.md`，然后粘贴 `path1-deep-adaptation/BOOTSTRAP.md`。
 
-两条路径可以随时切换。
+两条路随时切换。先用起来，再慢慢调。或者第一天就深度定制，看你自己。
 
-## 核心能力
+## 你能得到什么
 
-| 能力 | 实现方式 |
+| | |
 |---|---|
-| **6 条协作铁律** | 全局 `CLAUDE.md`：谋而后动、缺信息就问、少即是多、精确优于完整 |
-| **三段式工作流** | `/plan` → `/code` → `/evaluate`，每阶段有专属 agent |
-| **硬编码密钥拦截** | `secret-scan.sh` hook —— 在密钥进入代码库前就挡住 |
-| **危险命令弹窗确认** | `dangerous-command.sh` hook —— `rm -rf`、`git push --force` 等触发系统弹窗，默认"拒绝" |
-| **会话结束记踩坑** | `gotchas-prompt.sh` hook —— 每次 session 结束 prompt 你记录经验，自动追加到个人知识库 |
-| **月度复盘/审计** | `/harness-retro` 和 `/harness-audit` 命令，检查 harness 缺口和安全扫描 |
-| **4 个专项 agent** | `planner`、`evaluator`、`code-reviewer`、`security-reviewer`，各司其职 |
-| **4 个核心 skill** | `skill-creator`、`doc-templates`、`eval-rubric`、`gotchas`，可复用的工作流能力 |
-| **精选工具库** | 3 个开源 submodule（`agent-toolkit`、`anthropic-skills`、`everything-claude-code`），一次安装，随时扩展 |
+| **6 条协作铁律** | `CLAUDE.md` —— 谋而后动、缺信息就问、少即是多、精确优于完整 |
+| **三段式工作流** | `/plan` → `/code` → `/evaluate`，每阶段专属 agent |
+| **密钥扫描** | `secret-scan.sh` —— 硬编码密钥进不了你的代码库 |
+| **危险命令拦截** | `dangerous-command.sh` —— `rm -rf`、`git push --force` 等触发系统弹窗，默认"拒绝" |
+| **踩坑记录** | `gotchas-prompt.sh` —— session 结束自动 prompt，经验追加到个人知识库 |
+| **月度复盘/审计** | `/harness-retro` + `/harness-audit` |
+| **4 个专项 agent** | `planner` · `evaluator` · `code-reviewer` · `security-reviewer` |
+| **4 个核心 skill** | `skill-creator` · `doc-templates` · `eval-rubric` · `gotchas` |
+| **工具库** | 3 个精选 submodule —— `agent-toolkit` · `anthropic-skills` · `everything-claude-code` |
 
-## 我该选哪条路？
+## 怎么选
 
 ```
-你写过自己的编码哲学 / 个人工作流规则吗？
+写过自己的编码哲学 / 个人工作流规则？
   │
-  ├─ 没有  →  路径一：一键快装（15 分钟）
-  │           先用起来，个性化以后再说
+  ├─ 没有  →  一键快装
+  │           先跑起来，边用边调。
   │
-  └─ 有    →  路径二：深度适配（1-2 小时）
-              agent 读你的 "Soul"，围绕它构建定制 harness
+  └─ 有    →  深度适配
+              agent 读你的 "Soul"，围绕它构建定制 harness。
 ```
 
-**不确定？** 先走一键快装。随时可以回头做深度适配。
+拿不准？先一键快装。深度适配永远是一次对话的距离。
 
 ## 项目结构
 
 ```
 less-is-more/
-├─ README.md                          ← 英文版
-├─ README-zh.md                       ← 中文版（你正在看的）
-├─ LICENSE
+├─ path1-deep-adaptation/
+│  ├─ BOOTSTRAP.md          ← 粘给 Claude Code
+│  ├─ soul-template.md       ← 填你自己的编码哲学
+│  ├─ soul-example-yijiang.md← 原作者参考范例
+│  ├─ builder-guide.md
+│  └─ agent-steps.md
 │
-├─ path1-deep-adaptation/             ← 深度适配路径
-│  ├─ BOOTSTRAP.md                    ← 粘给 Claude Code 的入口 prompt
-│  ├─ soul-template.md                ← 空 Soul 模板，带占位符和填写提示
-│  ├─ soul-example-yijiang.md         ← 原作者 Soul 完整版（参考范例）
-│  ├─ builder-guide.md                ← 精简版搭建指南（面向 agent）
-│  └─ agent-steps.md                  ← agent 执行步骤 + 强制检查点
+├─ path2-quick-install/
+│  ├─ BOOTSTRAP.md           ← 粘给 Claude Code
+│  ├─ INSTALL.md             ← 给人看的安装说明
+│  ├─ agent-steps.md
+│  └─ claude-home/           ← 拷到 ~/.claude/ 的整包
+│     ├─ CLAUDE.md
+│     ├─ settings.json
+│     ├─ agents/
+│     ├─ commands/
+│     ├─ hooks/
+│     └─ skills/
 │
-├─ path2-quick-install/               ← 一键快装路径
-│  ├─ BOOTSTRAP.md                    ← 粘给 Claude Code 的入口 prompt
-│  ├─ INSTALL.md                      ← 给人看的安装说明
-│  ├─ agent-steps.md                  ← agent 安装步骤 + 强制检查点
-│  └─ claude-home/                    ← 待拷到 ~/.claude/ 的整包
-│     ├─ CLAUDE.md                    ← 全局协作契约（名字占位符）
-│     ├─ settings.json                ← Hooks + env 配置（增量合并）
-│     ├─ agents/                      ← planner / evaluator / code-reviewer / security-reviewer
-│     ├─ commands/                    ← /plan /code /evaluate /harness-retro /harness-audit
-│     ├─ hooks/                       ← secret-san / dangerous-command / gotchas-prompt
-│     └─ skills/                      ← skill-creator / doc-templates / eval-rubric / gotchas
-│
-└─ library/                           ← 开源工具集合（Git submodules）
-   ├─ agent-toolkit/                  → github.com/softaworks/agent-toolkit
-   ├─ anthropic-skills/               → github.com/anthropics/skills
-   └─ everything-claude-code/         → github.com/affaan-m/everything-claude-code
+└─ library/                  ← 开源工具（Git submodules）
+   ├─ agent-toolkit/
+   ├─ anthropic-skills/
+   └─ everything-claude-code/
 ```
 
-## 安全保证
+## 安全设计
 
-无论走哪条路，**agent 在动手前都会反复向你确认**：
+agent **动手前必问**。没有例外。
 
-- 修改任何文件前，先列出具体动什么
-- 改动前先备份 `~/.claude/` 整包快照
-- 涉及删除/覆盖必须明确授权
-- `settings.json` 永远增量合并，不整份覆盖
+- 改什么、改哪里，先列清楚
+- 任何改动前先把 `~/.claude/` 打包备份
+- 删除/覆盖必须明确授权
+- `settings.json` 永远增量合并，不整份替换
 
-如果 agent 没问就开始动：打断它，说"停，先解释"。
+如果 agent 没问就开始：打断它，说"停，先解释"。
 
-## 扩展你的工具库（Library）
+## 扩展工具库
 
-安装完成后，`~/.claude/library/` 就是你个人的开源工具库，随时可以加新包。
+装完后 `~/.claude/library/` 是你的，随便加。harness 没有的能力？跟 Claude 说"去 library 里找"，它会在里面搜索匹配的 agent、skill、hook 或 command，按需拷到项目级别。
 
-**使用方式**：当你需要某个能力但现有 harness 没有时，告诉 Claude "去 library 里找"，它会在 `~/.claude/library/` 中搜索匹配的 agent、skill、hook 或 command。找到后，按需拷贝到项目级别使用。
-
-**添加新工具包**：把任何开源的 Claude Code 工具包（或自己写的）直接丢到 `~/.claude/library/` 下即可。每个包一个子目录：
+任何开源的 Claude Code 工具包（或你自己写的），直接丢到 `~/.claude/library/` 就行。
 
 ```
 ~/.claude/library/
@@ -145,28 +134,28 @@ less-is-more/
 └─ 某个新包/          ← 直接放这里
 ```
 
-> **TODO**：未来会做成一个命令（如 `/add-to-library`），方便添加和管理工具包。
+> **TODO**：未来做成 `/add-to-library` 命令，管理更方便。
 
 ## 前置要求
 
-- **macOS** —— hook 里的 `osascript` 弹窗是 macOS 原生能力，Linux/Windows 需要改 hook 换成 zenity / PowerShell dialog
-- **Claude Code CLI** 已安装并能正常使用
-- `~/.claude/` 目录存在（Claude Code 首次运行会自动建）
+- **macOS**（hook 用 `osascript` 弹窗；Linux/Windows → 换成 `zenity` / PowerShell dialog）
+- **Claude Code CLI** 已安装
+- `~/.claude/` 目录存在（首次运行自动创建）
 
 ## 常见问题
 
-| 问题 | 解决 |
+| | |
 |---|---|
-| 装完 hook 不弹窗 | `chmod +x ~/.claude/hooks/*.sh` 并重启 Claude Code |
-| 想卸载 | 从 `~/.claude/backups/pre-install-*.tar.gz` 解压还原 |
-| Agent 卡壳 | 把报错原样贴回去让它自己分析 |
+| hook 不生效 | `chmod +x ~/.claude/hooks/*.sh` + 重启 Claude Code |
+| 想回退 | `tar -xzf ~/.claude/backups/pre-install-*.tar.gz -C ~` |
+| Agent 卡住 | 把报错贴回去，让它自己排查 |
 | library/ 为空 | `git submodule update --init --recursive` |
 
 ## 参与贡献
 
-欢迎提交 PR！如果你有更好的 hook、新的 skill、或改进过的 agent 定义，直接开 issue 或提 PR。
+欢迎 PR！更好的 hook、新的 skill、改进的 agent —— 直接开 issue 或提 PR。
 
-比较大的改动建议先开 issue 讨论方向，再动手。
+比较大的改动建议先开 issue 对齐方向，免得你白忙活。
 
 ## 许可证
 
@@ -174,4 +163,4 @@ MIT。详见 [LICENSE](LICENSE)。
 
 ---
 
-Made by [Jyan](https://github.com/Jyan)
+Made by [Jyan](https://github.com/jjblaack)

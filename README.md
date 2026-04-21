@@ -1,8 +1,8 @@
 # less-is-more
 
-A personal AI development harness for **Claude Code**. Ship two installation paths — a one-click quick install, or a deep adaptation that binds to your own coding philosophy.
+> **Your judgment is the steering wheel. AI is the engine.**
 
-Built on a single principle: **less is more**. Not a wall of rules that constrain the agent, but the minimum set of guardrails that keep it on the road — so it can run faster, not slower. You drive. AI is the copilot.
+A personal AI development harness for **Claude Code** — two installation paths, one philosophy: **the minimum number of constraints that still keep you in control**.
 
 ---
 
@@ -10,132 +10,121 @@ Built on a single principle: **less is more**. Not a wall of rules that constrai
 
 ---
 
-## Philosophy
+## What Is This
 
-In the AI era, **taste is the most important skill**. Anyone can generate code now — the differentiator is understanding depth, knowing what to keep, and knowing what to cut.
+Claude Code is powerful. But without a workflow, you end up reviewing a mountain of code you didn't ask for. With *too many* rules, you spend more time managing the agent than actually shipping.
 
-Most harnesses go heavy: dozens of rules, mandatory patterns, rigid workflows. They treat the agent like a child that needs constant supervision. This harness goes the opposite direction — **the minimum number of constraints that still keep you in control**.
+Most harnesses solve this by adding **more** — more rules, more phases, more guardrails. This one solves it by adding **less**.
 
-Think of it like a saddle on a horse: it doesn't tell the horse where to go or how fast to run. It just makes sure you can steer when you need to. The horse does what it's best at — running. You do what you're best at — deciding the destination.
+Six iron rules. Three phases for non-trivial work. Three safety hooks. That's it. Every constraint earns its place by either protecting you directly or multiplying the agent's output. Everything else is noise.
 
-This is why the harness has only **6 iron rules** (not 60), only **3 phases for non-trivial work** (not a 10-step checklist), and only **3 safety hooks** (not 10). Every constraint earns its place. If it doesn't directly protect you or directly multiply the agent's effectiveness, it doesn't belong.
+Think of it like reins on a horse: they don't dictate the route or the pace. They just make sure you can steer when it matters.
 
-## Why This Exists
+## Why It Exists
 
-Claude Code is a powerful coding agent, but using it well requires **discipline** — not just better prompts. Without structure, AI-generated code accumulates fast and you lose control of what your system actually does. With too many rules, you suffocate the agent's productivity and spend more time managing it than coding.
+In the AI era, **taste is the differentiator**. Anyone can generate code. The gap is between people who understand what to keep, what to cut, and why.
 
-This harness gives you a **lightweight, repeatable workflow** that lives in `~/.claude/` and applies to every session, every project, every agent. It enforces only what matters:
+This harness bakes that philosophy into `~/.claude/` so it applies to every session, every project, every agent — automatically.
 
-- **Think before acting** — the agent must restate understanding, wait for your confirmation, then propose a plan, then wait again before touching code
-- **Structured workflow for non-trivial work** — trivial changes go direct; anything more goes through `/plan` → `/code` → `/evaluate`
-- **Safety by default** — hardcoded secrets get blocked, destructive commands require your explicit approval
-- **Learning from mistakes** — every session end prompts you to record what went wrong, building a personal knowledge base over time
-
-**The goal**: AI as a reliable copilot, not an uncontrolled code generator. You're always the driver.
+**The core loop:**
+- **Think first** — the agent restates your ask, waits for your "yes", proposes a plan, waits again. No drive-by commits.
+- **Structure when it matters** — trivial? Go direct. Non-trivial? `/plan` → `/code` → `/evaluate`. No ceremony for simple stuff.
+- **Safety on by default** — secrets blocked, destructive commands need your explicit go-ahead.
+- **Learn from every session** — session end prompts you to capture what went wrong. Weeks later, you've built a personal knowledge base.
 
 ## Quick Start
 
 ```bash
-# Clone with submodules (includes the open-source tool library)
 git clone --recursive <repo-url>
 cd less-is-more
-
-# Or if already cloned but library/ is empty:
-git submodule update --init --recursive
 ```
 
-Then pick a path:
+Then pick your path:
 
-| Path | Time | Description |
+| Path | Time | TL;DR |
 |---|---|---|
-| **One-Click Install** | ~15 min | Get a working harness immediately. Personalize later. |
-| **Deep Adaptation** | 1-2 hrs | Build a harness that's tightly bound to your personal coding philosophy ("Soul"). |
+| **Quick Install** | ~15 min | Paste one prompt, get a working harness. Personalize later. |
+| **Deep Adaptation** | 1-2 hrs | Write your own coding philosophy ("Soul"), let the agent build around it. |
 
-**Path 1 — One-Click**: Open Claude Code in this directory, paste the contents of `path2-quick-install/BOOTSTRAP.md`, and follow the prompts.
+**Quick Install**: Open Claude Code in this directory, paste `path2-quick-install/BOOTSTRAP.md`.
 
-**Path 2 — Deep Adaptation**: Fill out `path1-deep-adaptation/soul-template.md` with your own coding philosophy, then paste `path1-deep-adaptation/BOOTSTRAP.md` into Claude Code.
+**Deep Adaptation**: Fill out `path1-deep-adaptation/soul-template.md`, then paste `path1-deep-adaptation/BOOTSTRAP.md`.
 
-You can switch between paths at any time.
+Paths are interchangeable. Start quick, refine later. Or go deep from day one.
 
-## Features
+## What You Get
 
-| Feature | How It Works |
+| | |
 |---|---|
-| **6 Iron Rules** | Global `CLAUDE.md` — think-first, ask-when-unclear, less-is-more, precision-over-completeness |
-| **Three-Phase Workflow** | `/plan` → `/code` → `/evaluate` with dedicated agents for each phase |
-| **Secret Scanning** | `secret-scan.sh` hook — blocks hardcoded API keys, tokens, passwords before they land in your codebase |
-| **Dangerous Command Guard** | `dangerous-command.sh` hook — `rm -rf`, `git push --force`, etc. trigger an OS dialog defaulting to "deny" |
-| **Session-End Gotcha Capture** | `gotchas-prompt.sh` hook — prompts you to record lessons learned; auto-appends to your personal knowledge base |
-| **Monthly Retro & Audit** | `/harness-retro` and `/harness-audit` commands to review harness gaps and scan for security issues |
-| **4 Specialist Agents** | `planner`, `evaluator`, `code-reviewer`, `security-reviewer` — each with focused scope and tool access |
-| **4 Core Skills** | `skill-creator`, `doc-templates`, `eval-rubric`, `gotchas` — reusable capabilities for your workflow |
-| **Curated Tool Library** | 3 open-source submodules (`agent-toolkit`, `anthropic-skills`, `everything-claude-code`) — install once, expand anytime |
+| **6 Iron Rules** | `CLAUDE.md` — think-first, ask-when-unclear, less-is-more, precision-over-completeness |
+| **3-Phase Workflow** | `/plan` → `/code` → `/evaluate` with dedicated agents |
+| **Secret Scanner** | `secret-scan.sh` — blocks hardcoded keys before they hit your repo |
+| **Dangerous Command Guard** | `dangerous-command.sh` — `rm -rf`, `git push --force` etc. trigger a system dialog (defaults to "deny") |
+| **Gotcha Capture** | `gotchas-prompt.sh` — end-of-session prompt, auto-appends to your personal knowledge base |
+| **Monthly Retro & Audit** | `/harness-retro` + `/harness-audit` |
+| **4 Specialist Agents** | `planner` · `evaluator` · `code-reviewer` · `security-reviewer` |
+| **4 Core Skills** | `skill-creator` · `doc-templates` · `eval-rubric` · `gotchas` |
+| **Tool Library** | 3 curated submodules — `agent-toolkit` · `anthropic-skills` · `everything-claude-code` |
 
-## Which Path Should I Pick?
+## How to Choose
 
 ```
-Do you have a written coding philosophy / personal workflow rules?
+Written down your own coding philosophy / workflow rules?
   │
-  ├─ No  →  Path 1: One-Click Install (15 min)
-  │          Get working immediately, personalize later
+  ├─ No  →  Quick Install
+  │          Get it running. Tweak as you go.
   │
-  └─ Yes →  Path 2: Deep Adaptation (1-2 hrs)
-             The agent reads your "Soul" and builds a custom harness around it
+  └─ Yes →  Deep Adaptation
+             The agent reads your "Soul" and builds a custom harness.
 ```
 
-**Not sure?** Start with Path 1. You can always run Path 2 later to refine it.
+Unsure? Start Quick Install. Deep Adaptation is always one conversation away.
 
 ## Project Structure
 
 ```
 less-is-more/
-├─ README.md                          ← You are here
-├─ README-zh.md                       ← Chinese version
-├─ LICENSE
+├─ path1-deep-adaptation/
+│  ├─ BOOTSTRAP.md          ← paste this into Claude Code
+│  ├─ soul-template.md       ← fill this out with your own philosophy
+│  ├─ soul-example-yijiang.md← author's reference example
+│  ├─ builder-guide.md
+│  └─ agent-steps.md
 │
-├─ path1-deep-adaptation/             ← Deep adaptation path
-│  ├─ BOOTSTRAP.md                    ← Entry prompt to paste into Claude Code
-│  ├─ soul-template.md                ← Empty Soul template with fill-in prompts
-│  ├─ soul-example-yijiang.md         ← Author's Soul (reference example)
-│  ├─ builder-guide.md                ← Concise build guide (for the agent)
-│  └─ agent-steps.md                  ← Step-by-step with mandatory checkpoints
+├─ path2-quick-install/
+│  ├─ BOOTSTRAP.md           ← paste this into Claude Code
+│  ├─ INSTALL.md             ← human-readable instructions
+│  ├─ agent-steps.md
+│  └─ claude-home/           ← gets copied to ~/.claude/
+│     ├─ CLAUDE.md
+│     ├─ settings.json
+│     ├─ agents/
+│     ├─ commands/
+│     ├─ hooks/
+│     └─ skills/
 │
-├─ path2-quick-install/               ← One-click install path
-│  ├─ BOOTSTRAP.md                    ← Entry prompt to paste into Claude Code
-│  ├─ INSTALL.md                      ← Human-readable install instructions
-│  ├─ agent-steps.md                  ← Agent install steps with checkpoints
-│  └─ claude-home/                    ← Bundle to copy into ~/.claude/
-│     ├─ CLAUDE.md                    ← Global contract (name placeholder)
-│     ├─ settings.json                ← Hooks + env config (incremental merge)
-│     ├─ agents/                      ← planner / evaluator / code-reviewer / security-reviewer
-│     ├─ commands/                    ← /plan /code /evaluate /harness-retro /harness-audit
-│     ├─ hooks/                       ← secret-scan / dangerous-command / gotchas-prompt
-│     └─ skills/                      ← skill-creator / doc-templates / eval-rubric / gotchas
-│
-└─ library/                           ← Open-source tool collection (Git submodules)
-   ├─ agent-toolkit/                  → github.com/softaworks/agent-toolkit
-   ├─ anthropic-skills/               → github.com/anthropics/skills
-   └─ everything-claude-code/         → github.com/affaan-m/everything-claude-code
+└─ library/                  ← open-source tools (Git submodules)
+   ├─ agent-toolkit/
+   ├─ anthropic-skills/
+   └─ everything-claude-code/
 ```
 
-## Safety Guarantees
+## Safety by Design
 
-Every path follows the same discipline — **the agent asks before it acts**:
+The agent **asks before it acts**. Always.
 
-- Lists exactly what files it will touch before modifying anything
-- Takes a full `~/.claude/` snapshot backup before any changes
-- Requires explicit authorization for deletions or overwrites
-- Always incrementally merges `settings.json`, never overwrites your existing config
+- Lists exactly what it'll touch before touching anything
+- Full `~/.claude/` snapshot before any changes
+- Deletions/overwrites require explicit authorization
+- `settings.json` is always incrementally merged, never replaced
 
-If the agent starts acting without asking: interrupt it. Say "stop, explain first."
+If the agent starts acting without asking: interrupt it. Say "stop, explain."
 
-## Expanding Your Tool Library
+## Extending the Library
 
-After installation, `~/.claude/library/` is your personal open-source tool collection. You can extend it anytime.
+After install, `~/.claude/library/` is yours to grow. Need a capability the harness doesn't have? Tell Claude "go look in library." It'll search for matching agents, skills, hooks, or commands and copy what's needed.
 
-**How to use**: When you need a capability the harness doesn't have, tell Claude "go look in library." It searches `~/.claude/library/` for matching agents, skills, hooks, or commands, then copies what's needed to the project level.
-
-**Adding new packages**: Drop any open-source Claude Code tool pack (or your own) directly into `~/.claude/library/`. One subdirectory per package:
+Drop any open-source Claude Code tool pack (or your own) directly into `~/.claude/library/`.
 
 ```
 ~/.claude/library/
@@ -145,28 +134,28 @@ After installation, `~/.claude/library/` is your personal open-source tool colle
 └─ some-new-package/    ← just drop it here
 ```
 
-> **TODO**: This will become a command (e.g. `/add-to-library`) for easier management.
+> **TODO**: Will become a `/add-to-library` command for easier management.
 
 ## Prerequisites
 
-- **macOS** — hooks use `osascript` for native dialogs. Linux/Windows users need to adapt hooks to use `zenity` or PowerShell dialogs.
-- **Claude Code CLI** installed and working
-- `~/.claude/` directory exists (Claude Code creates it on first run)
+- **macOS** (hooks use `osascript` dialogs; Linux/Windows → swap to `zenity` / PowerShell)
+- **Claude Code CLI** installed
+- `~/.claude/` exists (created on first run)
 
 ## Troubleshooting
 
-| Issue | Fix |
+| | |
 |---|---|
-| Hooks don't trigger | `chmod +x ~/.claude/hooks/*.sh` and restart Claude Code |
-| Want to uninstall | Restore from `~/.claude/backups/pre-install-*.tar.gz` |
-| Agent gets stuck | Paste the error back to it and let it debug |
-| Library/ is empty after clone | `git submodule update --init --recursive` |
+| Hooks not firing | `chmod +x ~/.claude/hooks/*.sh` + restart Claude Code |
+| Want to undo | `tar -xzf ~/.claude/backups/pre-install-*.tar.gz -C ~` |
+| Agent stuck | Paste the error back, let it debug itself |
+| Library/ empty | `git submodule update --init --recursive` |
 
 ## Contributing
 
-PRs welcome! If you have a better hook, a new skill, or an improved agent definition, open an issue or submit a PR.
+PRs welcome. Better hook, new skill, improved agent — open an issue or drop a PR.
 
-For larger changes, please open an issue first so we can discuss the approach.
+Big changes? Open an issue first. Let's align before you invest time.
 
 ## License
 
@@ -174,4 +163,4 @@ MIT. See [LICENSE](LICENSE) for details.
 
 ---
 
-Made by [Jyan](https://github.com/Jyan)
+Made by [Jyan](https://github.com/jjblaack)
